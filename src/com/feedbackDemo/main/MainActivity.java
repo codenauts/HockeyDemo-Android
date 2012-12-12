@@ -9,6 +9,7 @@ import net.hockeyapp.android.UpdateManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -38,8 +39,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
   private void registerForCrashes() {
     crashManagerImpl = new CrashManagerImplementation(new WeakReference<Activity>(MainActivity.this));
-    crashManager = new CrashManager(new WeakReference<Context>(mContext));
-    crashManager.register(AppConstants.APP_ID, crashManagerImpl);
+    CrashManager.register(new WeakReference<Context>(mContext), AppConstants.APP_ID, crashManagerImpl);
   }
 	
   private void registerForFeedback() {
@@ -53,11 +53,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	
   private void showFeedbackActivity() {
     FeedbackManager.showFeedbackActivity(this);
-  }
-	
-  @Override
-  public void onResume() {
-    super.onResume();
   }
 	
   @Override
