@@ -43,12 +43,12 @@ public class MainActivity extends Activity implements OnClickListener {
   }
 	
   private void registerForFeedback() {
-    FeedbackManager.register(this, AppConstants.APP_ID);
+    FeedbackManager.register(new WeakReference<Context>(mContext), AppConstants.APP_ID);
   }
 
   private void checkForUpdates() {
     /** Remove this for store builds! */
-    UpdateManager.register(this, AppConstants.APP_ID);
+    UpdateManager.register(new WeakReference<Activity>(MainActivity.this), AppConstants.APP_ID);
   }
 	
   private void showFeedbackActivity() {
