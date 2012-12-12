@@ -86,6 +86,7 @@ public class CrashManagerImplementation extends CrashManagerListener {
         log.append(line);
         log.append(System.getProperty("line.separator"));
       }
+      
       bufferedReader.close();
 
       description = log.toString();
